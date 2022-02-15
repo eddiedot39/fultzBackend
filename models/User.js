@@ -18,6 +18,11 @@ const userSchema = mongoose.Schema({
   status: {
     type: String,
     required: [true, "Please add a status"]
+  },
+  profilePhotoBase64: {
+    type: String,
+    required: false,
+    default: null
   }
 })
 
