@@ -3,7 +3,6 @@ import User from "../models/User.js"
 import bcrypt from "bcryptjs"
 import jwt from 'jsonwebtoken'
 
-
 export const register = asyncHandler(async (req, res) => {
   const { name, email, password, status } = req.body
      
@@ -26,14 +25,13 @@ export const register = asyncHandler(async (req, res) => {
 })
 
 export const login = asyncHandler(async (req, res) => {
-    const { email, password } = req.body
-
-    const user = await User.findOne({email})
-    if(user && (await bcrypt.compare(password, user.password))) {
-      const token = jwt.sign({id: user.id}, 'secret')
-      res.json({token})
-    } else {
-      res.status(400)
-      throw new Error("Invalid credentials")
-    }
+  const { email, password } = req.body
+  const user = await User.findOne({email})
+  if(user && (await bcrypt.compare(password, user.password))) {
+    const token = jwt.sign({id: user.id}, 'secret')
+    res.json({token})
+  } else {
+    res.status(400)
+    throw new Error("Invalid credentials")
+  }
 })
