@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import auth from './routes/auth.js'
+import user from './routes/user.js'
 import error from './middleware/error.js'
 import connect from './db/connect.js'
 
@@ -17,6 +18,7 @@ app.use(cors()) // cross origin resource sharing lejon komunikimin nga nje burim
 
 //routet
 app.use('/auth', auth) //routi per autentifikimin e userit
+app.use('/user', user) // routi per te dhenat e userit: edit user, 
 
 //error handler perdoret per te kthyer errorin ne format json dhe jo html
 app.use(error)
