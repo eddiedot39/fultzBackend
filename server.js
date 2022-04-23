@@ -5,7 +5,9 @@ import user from './routes/user.js'
 import post from './routes/post.js'
 import error from './middleware/error.js'
 import connect from './db/connect.js'
+import dotenv from 'dotenv'
 
+dotenv.config()
 
 connect() // lidhja me databazen
 

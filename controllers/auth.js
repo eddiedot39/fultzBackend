@@ -16,7 +16,7 @@ export const register = asyncHandler(async (req, res) => {
   const user = await User.create({ name, email, password: hashedPassword, status })
 
   if (user) {
-    const token = jwt.sign({id: user.id}, 'secret')
+    const token = jwt.sign({id: user.id}, process.env.TOKEN)
     res.json({token})
   } else {
     res.status(400)
@@ -28,7 +28,7 @@ export const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body
   const user = await User.findOne({email})
   if(user && (await bcrypt.compare(password, user.password))) {
-    const token = jwt.sign({id: user.id}, 'secret')
+    const token = jwt.sign({id: user.id}, process.env.TOKEN)
     res.json({token})
   } else {
     res.status(400)
